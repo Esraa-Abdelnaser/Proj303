@@ -38,6 +38,17 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Offers</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Sign Up/In</a></li>
+                        <li class="nav-item">
+                            <?php  $i = session()->get('user_id');  ?>
+                            <form action="/menu" method="POST">
+                            {{csrf_field()}}
+                            <input type="hidden" name="nc" value="{{$i}}">  
+                            <button type="submit" style="padding:5px" class="btn btn-primary bb" href="/menu">
+                            MENU
+                            </button>    
+                            </form>
+                            
+                        </li>       
                         <li class="nav-item">   
                             <?php  $i = session()->get('user_id');  ?>
                             <form action="/calc" method="POST">
@@ -45,9 +56,22 @@
                             <input type="hidden" name="nc" value="{{$i}}">    
                             <button type="submit" style="padding:5px" class="btn btn-primary bb" href="/calc">
                             Cart <i class="fas fa-shopping-cart"></i>
-                                <sup><span class="badge badge-secondary">{{session()->get('numOfOrders')}}</span></sup></button>
+                                <sup><span class="badge badge-secondary">{{session()->get('numOfOrders')}}</span></sup></button>  
                             </form>
-                        </li>        
+                            
+                            @if($i=='1')     
+                                        
+                                        <li class="nav-item">
+                                       <form action="/create_products" method="GET">
+                                       {{csrf_field()}}
+                                       <input type="hidden" name="nc" value="{{$i}}">  
+                                       <button type="submit" style="padding:5px" class="btn btn-primary bb" href="/storeProd">
+                                       Create Products
+                                        </form>
+                                   </li>
+                            @endif 
+                                       
+                            
                     </ul>
                 </div>
             </div>

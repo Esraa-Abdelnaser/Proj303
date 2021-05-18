@@ -36,6 +36,23 @@ Route::post('/store_order', 'RestoController@save_order');
 //calculate the order
 Route::post('/calc','RestoController@count');
 
+Route::post('/menu','RestoController@showMenu');
+
+//show the details of order
+Route::get('/', function () {
+    return view('user.result');
+});
+
+Route::get('/', function () {
+    return view('user.menu');
+});
+
+Route::get('/create_products', function () {
+    return view('user.create_product');
+});
+
+Route::post('/storeProd','RestoController@storeProducts');
+
 //show the details of order
 Route::get('/', function () {
     return view('user.result');

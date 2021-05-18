@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\Product;
 use App\Order;
+
 class RestoController extends Controller
 {
      
@@ -108,6 +109,26 @@ class RestoController extends Controller
                     window.location.href = '/mas';
                     </script>";}
     }
+
+    public function showMenu(Request $request){
+    
+        $products = Product::get();
+        
+       return view('user.menu',compact('products') );
+       
+        }
+
+        public function storeProducts(Request $request){
+            Product::create([
+                'name' => $request->name ,
+                'price' => $request->price 
+            ]);
+            
+            $products = Product::get();
+        
+            return view('user.menu',compact('products') );
+            }
+           
     
     
 }
