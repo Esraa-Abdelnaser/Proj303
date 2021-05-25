@@ -11,7 +11,8 @@ class Customer extends Model
     protected $hidden = ['created_at','updated_at'];
     
     public function products(){
-        return $this->belongsToMany('App\Product','customers_products','customer_id','product_id','id','id');
+        return $this->belongsToMany('App\Product','customers_products','customer_id','product_id'
+       ,'id','id')->withPivot('quantity','sub_price');
     }
     
     public function orders(){

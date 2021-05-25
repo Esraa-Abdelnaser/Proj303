@@ -24,6 +24,11 @@
     </head>
     <body id="page-top">
         <!-- Navigation-->
+
+        <?php  $i = session()->get('user_id');
+               $j = session()->get('user_name');
+        ?>
+
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
             <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href=""><img src="assets/img/homelogo.png" style="width:75px ; height:75px" alt="" /></a>
@@ -37,9 +42,20 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Menu</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Offers</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
+                        @if(session()->has('user_name') ) 
+                            <li class="nav-item">
+                                <form action="/sign_out" method="GET">
+                                {{csrf_field()}}
+                                <button type="submit" style="padding:5px" class="btn btn-primary bb" href="/sign_out">
+                                Sign-Out
+                                </form>
+                            </li>
+                        @else    
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Sign Up/In</a></li>
+                        @endif  
+                        
                         <li class="nav-item">
-                            <?php  $i = session()->get('user_id');  ?>
+                            
                             <form action="/menu" method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="nc" value="{{$i}}">  

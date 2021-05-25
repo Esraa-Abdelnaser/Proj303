@@ -81,7 +81,7 @@ body{
         <!-- Table row -->
         <div class="row">
             <div class="col-xs-12 table-responsive">
-            @if($products->count()>0 && $order->count()>0 && $products->count()==$order->count())
+            @if($products->count()>0 )
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -94,19 +94,18 @@ body{
                     <tbody>
                     
                    
-                   
+                    <?php $sum=0 ?>
                         @for ($i = 0; $i < count($products); $i++) 
-                        
+                        {{$sum+=$products[$i]->pivot->sub_price}}
                         <tr>
                                <td >{{$products[$i]->name}}</td>
                                <td>{{$products[$i]->price}}</td>
-                               <td>{{$order[$i]->quantity}}</td>
-                               <td>{{$order[$i]->sub_price}}</td>  
+                               <td>{{$products[$i]->pivot->quantity}}</td>
+                               <td>{{$products[$i]->pivot->sub_price}}</td>  
                         </tr>  
                         @endfor  
                     </tbody>
-                </table>
-                     
+                </table> 
             </div>
         </div>
         <div class="row">
@@ -117,22 +116,29 @@ body{
                         <tbody>
                             <tr>
                                 <th>Total Price:</th>
-                                <td> {{$total}}</td>
+                                <td> {{$sum}}</td>
+                                
                             </tr>
                         </tbody>
                     </table>
-                            
+                      
                 </div>
             </div>
         </div>
         <!-- this row will not appear when printing -->
+        <?php  $i = session()->get('user_id');?>
         <div class="row no-print" style="margin-left:85%">
             <div class="col-xs-12">
                 <br>
-                <button class="btn btn-warning"  onclick="showAlert()" data-dismiss="modal" type="button" style="width:120px">
+                <form action="/delete_order" method="POST">
+                    {{csrf_field()}}
+                    <input type="hidden" name="nc" value="{{$i}}">  
+                    <button class="btn btn-warning"  onclick="showAlert()" data-dismiss="modal" style="width:120px">
                     </i>
                     ORDER NOW
-                </button>
+                    </button>
+                </form>
+
             </div>
                 
           @else

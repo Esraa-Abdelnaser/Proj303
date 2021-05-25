@@ -54,8 +54,12 @@ Route::get('/create_products', function () {
 Route::post('/storeProd','RestoController@storeProducts');
 
 //show the details of order
-Route::get('/', function () {
+Route::get('/calc', function () {
     return view('user.result');
 });
 
 Route::get('/num','RestoController@numOfOrders');
+
+Route::get('/sign_out','RestoController@signOut');
+
+Route::post('/delete_order','RestoController@deleteOrder');

@@ -30,7 +30,7 @@ class RestoController extends Controller
         }
         $cust = Customer::find($c->id);
         $order = $cust->orders;
-        $number = count($order);
+        $number = $cust->products()->count();
         $request->session()->put('numOfOrders',$number);
         return redirect('/mas');
         }
@@ -52,7 +52,7 @@ class RestoController extends Controller
             
             $cust = Customer::find($c->id);
             $order = $cust->orders;
-            $number = count($order);
+            $number = $cust->products()->count();
             $request->session()->put('numOfOrders',$number);
             
             return redirect('/mas');
@@ -67,19 +67,16 @@ class RestoController extends Controller
     public function save_order(Request $request){
         if(isset($request ->nc)){
          $customer = Customer::find($request ->nc);
-         $customer->products()->attach( $request ->np);
+
+         $product =  Product::select('name','price')->find($request->np);   
+
+         $customer->products()->attach( $request ->np
+         ,['quantity' =>$request->num ,'sub_price' =>($product->price) * ($request->num) ]);
          
-         $product =  Product::select('name','price')->find($request->np);
-        
-         Order::create([
-            'customer_id' => $request ->nc ,
-            'price'    => $product->price ,
-            'quantity' => $request->num ,
-            'sub_price'=> ($product->price) * ($request->num) 
-        ]);
         $cust = Customer::find($request ->nc);
-        $order = $cust->orders;
-        $number = count($order);
+        $order = $cust->products();
+        $number = $cust->products()->count();
+
         $request->session()->put('numOfOrders',$number); 
         }
         
@@ -93,14 +90,10 @@ class RestoController extends Controller
      $products = $customer->products;
 
      $cust = Customer::find($request->nc);
-     $order = $cust->orders;
+     $order = $cust->products();
+    
      
-     $total = 0;
-     foreach($order as $ord){
-        $total += $ord->sub_price;
-     }
-     
-    return view('user.result',compact('products','order', 'total'));
+    return view('user.result',compact('products','order','esraa'));
     
      }
      
@@ -128,7 +121,22 @@ class RestoController extends Controller
         
             return view('user.menu',compact('products') );
             }
-           
+
+        public function signOut(Request $request){
+            $request->session()->forget('request->customer_id');
+            $request->session()->forget('request->customer_name');
+            $request->session()->flush();
+            return redirect('/mas');
+            }   
+        
+        public function deleteOrder(Request $request){
+            Customer::find($request->nc)->products()->detach(); 
+            
+            $cust = Customer::find($request ->nc);
+            $number = $cust->products()->count();
+            $request->session()->put('numOfOrders',$number); 
+            return redirect('/mas');
+        }    
     
     
 }
