@@ -30,12 +30,12 @@ body{
 </style>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+
 </head>
 <body>
   <section class="content content_content" style="width: 70%; margin: auto;">
     <section class="invoice">
-        <!-- title row -->
+       
         <div class="row">
             <div class="col-xs-4">
                 <h2 class="page-header">
@@ -48,7 +48,7 @@ body{
                 <a class="navbar-brand js-scroll-trigger" href=""><img src="assets/img/homelogo.png" style="width:75px ; height:60px" alt="" /></a>
             </div>    
         </div>
-        <!-- info row -->
+     
         <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
                 From
@@ -61,6 +61,7 @@ body{
             <div class="col-sm-4 invoice-col">
                 To 
                 <address>
+                    <!-- هنا ببقى بنده على السيشن عشان اجيب منه بيانات اليوزر -->
                     <strong>{{ucfirst(session()->get('user_name')) }}</strong>
                     <br>
                     <i class="fa fa-map-marker"></i>Address: {{session()->get('user_adress') }}
@@ -79,6 +80,7 @@ body{
             </div>
         </div>
         <!-- Table row -->
+        <!-- هنا بعمل جدول يعرض فيه الفاتورة -->
         <div class="row">
             <div class="col-xs-12 table-responsive">
             @if($products->count()>0 )
@@ -93,13 +95,15 @@ body{
                     </thead>
                     <tbody>
                     
-                   
+                   <!-- هنا بستقبل الاراي واخد منها الطلبات اللي الكاستمر طلبها -->
                     <?php $sum=0 ?>
                         @for ($i = 0; $i < count($products); $i++) 
-                        {{$sum+=$products[$i]->pivot->sub_price}}
+                        <!-- هنا بيجمع اسعار كل طلب عشان يعرض التوتال -->
+                           <?php $sum+=$products[$i]->pivot->sub_price?>
                         <tr>
                                <td >{{$products[$i]->name}}</td>
                                <td>{{$products[$i]->price}}</td>
+                               <!-- هنا بيعرض الكوانتيتي والساب برايس بطريقة مختلفه عشان هم بيفوت فالجدول -->
                                <td>{{$products[$i]->pivot->quantity}}</td>
                                <td>{{$products[$i]->pivot->sub_price}}</td>  
                         </tr>  
@@ -109,13 +113,14 @@ body{
             </div>
         </div>
         <div class="row">
-            <!-- accepted payments column -->
+  
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
                             <tr>
                                 <th>Total Price:</th>
+                                <!-- بيعرض المجموع الكلي -->
                                 <td> {{$sum}}</td>
                                 
                             </tr>
@@ -125,7 +130,7 @@ body{
                 </div>
             </div>
         </div>
-        <!-- this row will not appear when printing -->
+        <!-- i refer to customer id -->
         <?php  $i = session()->get('user_id');?>
         <div class="row no-print" style="margin-left:85%">
             <div class="col-xs-12">
@@ -155,6 +160,7 @@ body{
     </section>
   </section>
         <script>
+        // هنا بيعرض رسالة ان الاوردر هيوصل 
             function showAlert() {
             
             document.getElementById('suc').innerHTML= "Your order will arrive in minutes";

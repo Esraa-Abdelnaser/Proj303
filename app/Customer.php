@@ -15,7 +15,4 @@ class Customer extends Model
        ,'id','id')->withPivot('quantity','sub_price');
     }
     
-    public function orders(){
-        return $this->hasMany('App\Order');
-    }
 }

@@ -53,7 +53,7 @@ body{
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        <!-- نفس صفحة الفاتورة بس هنا بطبع المنيو -->
                         @for ($i = 0; $i < count($products); $i++) 
                         
                         <tr>
