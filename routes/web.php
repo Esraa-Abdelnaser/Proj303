@@ -37,13 +37,13 @@ Route::post('/calc','RestoController@count');
 // show menu
 Route::post('/menu','RestoController@showMenu');
 
-// route for admin to create product
+// route for view admin to create product
 Route::get('/create_products', function () {
     return view('user.create_product');
 });
 
-// stroe product of customer
-Route::post('/storeProd','RestoController@storeProducts');
+// create product
+Route::post('/storeProd','AdminController@storeProducts');
 
 //show the details of order
 Route::get('/result', function () {

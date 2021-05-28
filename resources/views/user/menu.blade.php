@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <title>Sweet & Salt Restaurant</title>
 <style>
 body{
@@ -14,7 +14,7 @@ body{
     position: relative;
     background: #fff;
     border: 1px solid #f4f4f4;
-    padding: 20px;
+    padding: 35px;
     margin: 150px 25px;
     opacity: 80%;
 }
@@ -68,7 +68,7 @@ body{
                                         
                                            <td><input  class="ii" type="number" name="num" min="0" max="50" value="0"> </td>
 
-                                            <td> <button  class="btn btn-primary">Add To Cart <i class="fas fa-shopping-cart"></i></button></td>
+                                            <td> <button  class="btn btn-primary">Add To Cart <i class="fa fa-shopping-cart"></i></button></td>
                                 </form>
                         </tr>  
                         @endfor  
