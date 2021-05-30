@@ -24,19 +24,19 @@ Route::get('/mas', function () {
 
 
 //store Sign up of customers
-Route::post('/store_customers','RestoController@storeCustomers');
+Route::post('/store_customers', 'RestoController@storeCustomers');
 
 //Check signin
-Route::post('/signin','RestoController@checkSignin');
+Route::post('/signin', 'RestoController@checkSignin');
 
 //store the order
 Route::post('/store_order', 'RestoController@save_order');
 
 //calculate the order
-Route::post('/calc','RestoController@count');
+Route::post('/calc', 'RestoController@count');
 
 // show menu
-Route::post('/menu','RestoController@showMenu');
+Route::post('/menu', 'RestoController@showMenu');
 
 // route for view admin to create product
 Route::get('/create_products', function () {
@@ -44,7 +44,7 @@ Route::get('/create_products', function () {
 });
 
 // create product
-Route::post('/storeProd','AdminController@storeProducts');
+Route::post('/storeProd', 'AdminController@storeProducts');
 
 // route for view admin to update product
 Route::get('/update_products', function () {
@@ -52,25 +52,22 @@ Route::get('/update_products', function () {
 });
 
 // update product
-Route::post('/updateProd','AdminController@updateProducts');
+Route::post('/updateProd', 'AdminController@updateProducts');
 
-Route::post('/dataOfProduct','AdminController@getDataOfProduct');
+Route::post('/dataOfProduct', 'AdminController@getDataOfProduct');
 
-Route::post('/deleteProduct','AdminController@deleteProduct');
+Route::post('/deleteProduct', 'AdminController@deleteProduct');
+
 //show the details of order
 Route::get('/result', function () {
     return view('user.result');
 });
 
-// Route::get('/num','RestoController@numOfOrders');
-
 // route for sign out
-Route::get('/sign_out','RestoController@signOut');
+Route::get('/sign_out', 'RestoController@signOut');
 
 // route for after ordering delete all products of user
-Route::post('/delete_allorders','RestoController@deleteallOrders');
+Route::post('/delete_allorders', 'RestoController@deleteallOrders');
 
 // route for customer for delete one order
-Route::post('/delete_order','RestoController@deleteOrder');
-
-
+Route::post('/delete_order', 'RestoController@deleteOrder');

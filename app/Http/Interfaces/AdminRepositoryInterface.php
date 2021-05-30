@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Http\Interfaces;
 
-interface AdminRepositoryInterface{
+interface AdminRepositoryInterface
+{
     public function create_product($request);
 
     public function update_product($request);

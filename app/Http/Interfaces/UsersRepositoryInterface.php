@@ -1,7 +1,9 @@
 <?php
+
 namespace App\Http\Interfaces;
 
-interface UsersRepositoryInterface{
+interface UsersRepositoryInterface
+{
 
     public function sign_up($request);
 
