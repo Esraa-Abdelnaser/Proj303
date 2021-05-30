@@ -10,7 +10,7 @@ class UsersRepository implements UsersRepositoryInterface{
 
     public function sign_up($request){
         // بيشوف الاول هل فيه حد عنده نفس الايميل او التلفون ساعتها مش هيرضى يخليه يعمل اكاونت
-        if(Customer::where('email',$request->email)->where('phone', $request->phone)->get()->count()>0 ){
+        if(Customer::where('email',$request->email)->count()>0 ||Customer::where('phone', $request->phone)->get()->count()>0){
             return "<script>
                     alert('There is account by this email or phone ');
                     window.location.href = '/mas';
@@ -49,7 +49,6 @@ class UsersRepository implements UsersRepositoryInterface{
         // هنا بخزنهم في متغير اسمه نمبر
         $request->session()->put('numOfOrders',$number);
     }
-    $UsersRepositoryInterface->sign_up($request);
         return redirect('/mas');
         }
     }
@@ -130,6 +129,7 @@ class UsersRepository implements UsersRepositoryInterface{
     }
 
     public function show_menu($request){
+        // بيجيب كل البرودكتس
         $products = Product::get();
 
         return $products;
@@ -143,10 +143,24 @@ class UsersRepository implements UsersRepositoryInterface{
     }
 
     public function Confirm_order($request){
+        // بيمسح الاوردر عشان مبقاش له لزمة بعد ما اتاكد
         Customer::find($request->nc)->products()->detach();  
         // هنا بيروح يجيب عدد الاوردرز الجديد
         $cust = Customer::find($request ->nc);
         $number = $cust->products()->count();
         $request->session()->put('numOfOrders',$number);
+    }
+
+    public function delete_order($request){
+
+        Customer::find($request->nc)->products()->wherePivot('id',$request->id_order)->detach(); 
+        // هنا بيروح يجيب عدد الاوردرز الجديد
+        $cust = Customer::find($request ->nc);
+        $number = $cust->products()->count();
+        $request->session()->put('numOfOrders',$number);
+
+        $customer = Customer::find($request->nc);
+        $products = $customer->products;
+        return $products;
     }
 }

@@ -22,6 +22,7 @@ Route::get('/mas', function () {
     return view('user.master');
 });
 
+
 //store Sign up of customers
 Route::post('/store_customers','RestoController@storeCustomers');
 
@@ -45,6 +46,17 @@ Route::get('/create_products', function () {
 // create product
 Route::post('/storeProd','AdminController@storeProducts');
 
+// route for view admin to update product
+Route::get('/update_products', function () {
+    return view('user.update_product');
+});
+
+// update product
+Route::post('/updateProd','AdminController@updateProducts');
+
+Route::post('/dataOfProduct','AdminController@getDataOfProduct');
+
+Route::post('/deleteProduct','AdminController@deleteProduct');
 //show the details of order
 Route::get('/result', function () {
     return view('user.result');
@@ -56,4 +68,9 @@ Route::get('/result', function () {
 Route::get('/sign_out','RestoController@signOut');
 
 // route for after ordering delete all products of user
+Route::post('/delete_allorders','RestoController@deleteallOrders');
+
+// route for customer for delete one order
 Route::post('/delete_order','RestoController@deleteOrder');
+
+

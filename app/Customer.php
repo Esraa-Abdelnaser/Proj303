@@ -12,7 +12,7 @@ class Customer extends Model
     
     public function products(){
         return $this->belongsToMany('App\Product','customers_products','customer_id','product_id'
-       ,'id','id')->withPivot('quantity','sub_price');
+       ,'id','id')->withPivot('quantity','sub_price','id');
     }
     
 }

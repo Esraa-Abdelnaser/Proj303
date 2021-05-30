@@ -56,10 +56,13 @@ class RestoController extends Controller
             }   
         
         //هنا بقى لو عايزاه بعد ما خلاص اكد الاوردر وخلص يمسح بيانات الطلب 
-        public function deleteOrder(Request $request){
+        public function deleteallOrders(Request $request){
             $this->userRepository->Confirm_order($request);
             return redirect('/mas');
         }    
     
-    
+        public function deleteOrder(Request $request){
+            $products=$this->userRepository->delete_order($request);
+            return redirect('/mas');
+        } 
 }

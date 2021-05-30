@@ -17,4 +17,5 @@ interface UsersRepositoryInterface{
 
     public function Confirm_order($request);
 
+    public function delete_order($request);
 }

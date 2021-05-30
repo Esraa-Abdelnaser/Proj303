@@ -33,6 +33,9 @@ body{
 
 </head>
 <body>
+ <!-- i refer to customer id -->
+ <?php  $i = session()->get('user_id');
+        $j = session()->get('user_name');?>
   <section class="content content_content" style="width: 70%; margin: auto;">
     <section class="invoice">
        
@@ -91,6 +94,7 @@ body{
                           <th>Price</th>  
                           <th>Quantity</th>
                           <th>Sub-Total</th>
+                          <th style="color:red;">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,6 +110,19 @@ body{
                                <!-- هنا بيعرض الكوانتيتي والساب برايس بطريقة مختلفه عشان هم بيفوت فالجدول -->
                                <td>{{$products[$i]->pivot->quantity}}</td>
                                <td>{{$products[$i]->pivot->sub_price}}</td>  
+                               <td>
+                               <?php  $user_id = session()->get('user_id');  ?>  
+                               <form action="/delete_order" method="POST">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="np" value="{{$products[$i]->id}}">
+                                    <input type="hidden" name="nc" value="{{$user_id}}">
+                                    <input type="hidden" name="id_order" value="{{$products[$i]->pivot->id}}">
+                                    <button class="btn btn-warning" data-dismiss="modal" style="width:120px">
+                                    </i>
+                                    Delete order
+                                    </button>
+                                </form>
+                               </td> 
                         </tr>  
                         @endfor  
                     </tbody>
@@ -130,14 +147,13 @@ body{
                 </div>
             </div>
         </div>
-        <!-- i refer to customer id -->
-        <?php  $i = session()->get('user_id');?>
+       
         <div class="row no-print" style="margin-left:85%">
             <div class="col-xs-12">
                 <br>
-                <form action="/delete_order" method="POST">
+                <form action="/delete_allorders" method="POST">
                     {{csrf_field()}}
-                    <input type="hidden" name="nc" value="{{$i}}">  
+                    <input type="hidden" name="nc" value="{{$user_id}}">  
                     <button class="btn btn-warning"  onclick="showAlert()" data-dismiss="modal" style="width:120px">
                     </i>
                     ORDER NOW
