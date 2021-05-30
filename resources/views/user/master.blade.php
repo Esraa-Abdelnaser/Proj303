@@ -160,7 +160,7 @@
 
                         </div>
                         <div class="timeline-body">
-                            <p class="text-muted">One Pizza By <span class="badge badge-secondary">80 L.E</span> Not <span class="badge badge-secondary"><del style="">100 L.E</del></span></p>
+                            <p class="text-muted">One Pizza By <span class="badge badge-secondary">80 L.E</span> Not <span class="badge badge-secondary">100 L.E</del></span></p>
                         </div>
                         <br><br>
 
@@ -173,7 +173,7 @@
                             <h4>Burger</h4>
                         </div>
                         <div class="timeline-body">
-                            <p class="text-muted">One Burger By <span class="badge badge-secondary">50 L.E</span> Not <span class="badge badge-secondary"><del style="">60 L.E</del></span></p>
+                            <p class="text-muted">One Burger By <span class="badge badge-secondary">50 L.E</span> Not <span class="badge badge-secondary">60 L.E</del></span></p>
                         </div>
                         <br><br>
 
@@ -186,7 +186,7 @@
                             <h4>Cake</h4>
                         </div>
                         <div class="timeline-body">
-                            <p class="text-muted">One Cake By <span class="badge badge-secondary">150 L.E</span> Not <span class="badge badge-secondary"><del style="">200 L.E</del></span></p>
+                            <p class="text-muted">One Cake By <span class="badge badge-secondary">150 L.E</span> Not <span class="badge badge-secondary">200 L.E</del></span></p>
                         </div>
                         <br><br>
 
